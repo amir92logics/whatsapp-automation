@@ -1,0 +1,45 @@
+[2026-02-12T04:32:06.968Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:33:15.196Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:33:48.972Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:34:39.759Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:37:15.253Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:38:53.915Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:38:54.811Z] Campaign Error: PrismaClientValidationError: 
+Invalid `prisma.feeRecord.findMany()` invocation:
+
+{
+  where: {
+    student: {
+      schoolId: "cmlhq2hko0000w6x4qzst60h3"
+    },
+    status: "PENDING"
+  },
+  include: {
+    student: true,
+    school: true,
+    ~~~~~~
+?   payments?: true
+  }
+}
+
+Unknown field `school` for include statement on model `FeeRecord`. Available options are marked with ?.
+[2026-02-12T04:39:14.893Z] Triggered Reminders for cmlhq2hko0000w6x4qzst60h3
+[2026-02-12T04:39:15.508Z] Campaign Error: PrismaClientValidationError: 
+Invalid `prisma.feeRecord.findMany()` invocation:
+
+{
+  where: {
+    student: {
+      schoolId: "cmlhq2hko0000w6x4qzst60h3"
+    },
+    status: "PENDING"
+  },
+  include: {
+    student: true,
+    school: true,
+    ~~~~~~
+?   payments?: true
+  }
+}
+
+Unknown field `school` for include statement on model `FeeRecord`. Available options are marked with ?.
