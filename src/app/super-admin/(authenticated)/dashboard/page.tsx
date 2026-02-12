@@ -4,16 +4,26 @@ import { getGlobalStats, getRecentSchools, getAutomationStats, getRecentPaymentL
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
+interface PaymentLog {
+    id: string;
+    provider: string;
+    amount: { toString: () => string }; // Handling Decimal loosely
+    status: string;
+    createdAt: Date | string;
+}
+
 export default async function SuperAdminDashboardPage() {
     const session = await auth();
     if (session?.user?.role !== "SUPER_ADMIN") return redirect("/");
 
-    const [stats, recentSchools, autoStats, paymentLogs] = await Promise.all([
+    const [stats, recentSchools, autoStats, rawPaymentLogs] = await Promise.all([
         getGlobalStats(),
         getRecentSchools(5),
         getAutomationStats(),
         getRecentPaymentLogs(5)
     ]);
+
+    const paymentLogs = rawPaymentLogs as unknown as PaymentLog[];
 
     const statCards = [
         {

@@ -12,10 +12,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     providers: [
         Credentials({
             async authorize(credentials) {
-                if (!credentials?.email || !credentials?.password) return null;
+                const email = credentials?.email as string | undefined;
+                const password = credentials?.password as string | undefined;
+
+                if (!email || !password) return null;
 
                 const user = await prisma.user.findUnique({
-                    where: { email: credentials.email as string },
+                    where: { email },
                 });
 
                 if (!user || !user.password) return null;
@@ -23,8 +26,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 // For this dev environment, if the password is "password123", we allow it 
                 // to support existing seeded users. In production, always use bcrypt.
                 const isPasswordCorrect =
-                    credentials.password === user.password ||
-                    (await bcrypt.compare(credentials.password as string, user.password));
+                    password === user.password ||
+                    (await bcrypt.compare(password, user.password));
 
                 if (!isPasswordCorrect) return null;
 
@@ -32,7 +35,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    role: user.role,
+                    role: user.role.toString(),
                     schoolId: user.schoolId,
                 };
             },

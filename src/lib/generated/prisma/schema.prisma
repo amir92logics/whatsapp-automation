@@ -25,6 +25,24 @@ model School {
   maxStudents Int     @default(100)
   isActive    Boolean @default(true)
 
+  // WhatsApp Provider Configuration
+  whatsappProvider      String  @default("pywhatkit") // "pywhatkit" | "cloud_api"
+  whatsappPhoneNumberId String? // For Cloud API
+  whatsappAccessToken   String? // For Cloud API
+  whatsappBusinessId    String? // For Cloud API (optional)
+
+  // Payment Gateway Configuration
+  // Payment Gateway Configuration
+  jazzcashMerchantId    String? // JazzCash Merchant ID
+  jazzcashPassword      String? // JazzCash Password (for secure hash)
+  jazzcashIntegritySalt String? // JazzCash Integrity Salt
+
+  easypaisaMerchantId String? // EasyPaisa Merchant ID
+  easypaisaStoreId    String? // EasyPaisa Store ID
+  easypaisaHashKey    String? // EasyPaisa Hash Key (for secure hash)
+
+  paymentWebhookSecret String? // Webhook signature verification secret
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

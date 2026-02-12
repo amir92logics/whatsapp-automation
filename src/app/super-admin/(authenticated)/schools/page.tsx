@@ -10,7 +10,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { getSchools } from "@/lib/db";
-import { School as SchoolType } from "@prisma/client";
+import { School as SchoolType } from "@/lib/generated/prisma";
 import { AddSchoolModal } from "@/components/schools/add-school-modal";
 import { SchoolActions } from "@/components/schools/school-actions";
 
